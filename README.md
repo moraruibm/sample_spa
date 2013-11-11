@@ -1,0 +1,1 @@
+This sample application demonstrates some of the basics of building a SPA.

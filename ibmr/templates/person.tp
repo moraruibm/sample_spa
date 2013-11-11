@@ -1,0 +1,4 @@
+<p >
+	<%= person.FIRST_NAME %>, <%= person.LAST_NAME %> [<%= person.COUNTRY_NAME %> - <%= person.WORKER_DESCRIPTION %>] 
+	<span id="<%= person.cnum %>"  class="upload">|UPLOAD|</span>
+</p>
