@@ -12,6 +12,9 @@ define(['jquery',
 						var cnum = $("#cnum").val();
 						FormController.getIbmPerson(cnum);
 					});
+					$("#clearStorage").click(function(){
+						localStorage.clear();
+					});
 				}, 
 
 				getIbmPerson:function(cnum){

@@ -1,7 +1,10 @@
 define(['jquery',
-		'ibmr/services/MongoService'], 
+		'underscore',
+		'ibmr/services/MongoService',
+		'ibmr/services/LocalStorageService', 
+		'text!ibmr/templates/person.tp'], 
 
-	function($, MongoService) {
+	function($, _, MongoService, LocalStorageService, personTp) {
 
 			 var PersonController = {
 			 
@@ -9,7 +12,16 @@ define(['jquery',
 					$('.upload').live('click', function(){
 						var person = $(this).data('person');
 						PersonController.uploadPerson(person);
+						PersonController.logPerson(person);
 					});
+
+					var history = LocalStorageService.loadHistory();
+					for (var i = 0; i < history.length; i++) {		
+						var person = history[i];				
+						$('#sidebar').append(_.template(personTp, {"person" : person}));
+						$('#' + person.cnum).data("person", person);
+						$('#' + person.cnum).addClass("uploaded");
+					};
 				}, 
 
 				uploadPerson:function(person){
@@ -17,6 +29,10 @@ define(['jquery',
 					promise.done(function(){
 						$('#' + person.cnum).addClass("uploaded");
 					});
+				},
+
+				logPerson:function(person){
+					LocalStorageService.saveLocal(person);
 				}
 				
 			};
