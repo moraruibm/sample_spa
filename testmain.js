@@ -15,10 +15,10 @@ require.config({
 });
 
 require(
-    ['QUnit', 'tests/testService'],
-    function(QUnit, testService) {
+    ['QUnit', 'tests/services/WS4DServiceTest'],
+    function(QUnit, WS4DServiceTest) {
         
-        testService.register();
+        WS4DServiceTest.register();
         
         QUnit.load();
         QUnit.start();
