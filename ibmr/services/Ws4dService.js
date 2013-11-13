@@ -1,6 +1,7 @@
-define(['jquery'], 
+define(['jquery',
+		'config'], 
 
-	function($) {
+	function($, config) {
 
 			 var Ws4dService = {
 			 
@@ -8,7 +9,7 @@ define(['jquery'],
 					
 					return $.ajax({
 						type: "GET",
-						url: "https://istart-rest-dev1.lexington.ibm.com/restws/ebi/iemetrics/5283/",
+						url: config.ws4d,
 						contentType: "application/json",
 						dataType: 'jsonp',
 						data : {"format" : "j", "cnum" : cnum}
