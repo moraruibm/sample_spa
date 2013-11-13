@@ -15,11 +15,18 @@
 	<div id="header"><h1>IBM Person query app</h1></div>
 	<div id="nav">
 		<ul>
-			<li><a href="#">Menu</a></li>					
+			<li><a href="#/dashboard">Dashboard</a></li>					
+			<li><a href="#/load-upload">Load-Upload</a></li>
 		</ul>
 	</div>
-	<div id="main">
-		<h2>Column 1</h2>
+	<div id="main1">
+		<h2>Dashboard</h2>				
+		<p>This is an example of using Asynchronous Module Definition (AMD) API for JavaScript modules.</p>
+		<p>It demonstrates some of the techniques used to build Single Page Applications.</p>
+		<p>Dependencies: requireJs, jQuery, Underscore, Sammyjs, Qunit</p>
+	</div>
+	<div id="main2" style="">
+		<h2>Load-Upload</h2>
 		<select id="cnum">
 			<option value="081487675">081487675</option>
 			<option value="001668624">001668624</option>
@@ -34,10 +41,10 @@
 		</select>
 		<input type="button" id="loadCnum" value="Load data" />
 		<input type="button" id="clearStorage" value="ClearStrg" />
-		<p>This is an example of using Asynchronous Module Definition (AMD) API for JavaScript modules.</p>
-		<p>It demonstrates some of the techniques used to build Single Page Applications.</p>
-		<p>Dependencies: requireJs, jQuery, Underscore, Qunit</p>
-		
+		<p>You can get an IBMR data by CNUM id from the persons registry table using WS4D REST service</p>
+		<p>Data may be uploded to an external cloud using another REST service.</p>
+		<p>Every upload is recorded in the local storage</p>
+
 	</div>
 	<div id="sidebar">
 		<h2>Query results:</h2>

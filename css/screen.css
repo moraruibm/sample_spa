@@ -4,6 +4,7 @@ body,
 		padding:0;
 		color:#000;
 		background:#ffffff;
+		font-family:Tahoma, Geneva, sans-serif
 	}
 	#wrap {
 		width:750px;
@@ -32,7 +33,13 @@ body,
 		margin:0;
 		padding:0;
 	}
-	#main {
+	#main1 {
+		float:left;
+		width:180px;
+		padding:10px;
+		background:#969696;
+	}
+	#main2 {
 		float:left;
 		width:180px;
 		padding:10px;

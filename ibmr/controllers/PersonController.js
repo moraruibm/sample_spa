@@ -11,8 +11,7 @@ define(['jquery',
 				init:function(){
 					$('.upload').live('click', function(){
 						var person = $(this).data('person');
-						PersonController.uploadPerson(person);
-						PersonController.logPerson(person);
+						PersonController.uploadPerson(person);						
 					});
 
 					var history = LocalStorageService.loadHistory();
@@ -26,9 +25,10 @@ define(['jquery',
 
 				uploadPerson:function(person){
 					var promise = MongoService.saveIbmPerson(person);
-					promise.done(function(){
+					promise.then(function(){
 						$('#' + person.cnum).addClass("uploaded");
-					});
+					})
+					.then(PersonController.logPerson(person));
 				},
 
 				logPerson:function(person){
