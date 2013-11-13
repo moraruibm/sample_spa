@@ -1,14 +1,26 @@
 define(['jquery',
 		'underscore',
+		'ibmr/services/Ws4dService',
 		'ibmr/services/MongoService',
 		'ibmr/services/LocalStorageService', 
 		'text!ibmr/templates/person.tp'], 
 
-	function($, _, MongoService, LocalStorageService, personTp) {
+	function($, _, Ws4dService, MongoService, LocalStorageService, personTp) {
 
 			 var PersonController = {
 			 
 				init:function(){
+
+					$("#loadCnum").click(function(){
+						var cnum = $("#cnum").val();
+						PersonController.getIbmPerson(cnum);
+					});
+					
+					$("#clearStorage").click(function(){
+						localStorage.clear();
+						$('#sidebar').html("<h2>Query results:</h2>");
+					});
+
 					$('.upload').live('click', function(){
 						var person = $(this).data('person');
 						PersonController.uploadPerson(person);						
@@ -23,12 +35,28 @@ define(['jquery',
 					};
 				}, 
 
+				getIbmPerson:function(cnum){
+					var promise = Ws4dService.getIbmPerson(cnum);
+
+					promise					
+					.done(function(response){
+						var row = response.response.resultset[0].row;
+						row.cnum = cnum;
+						$('#sidebar').append(_.template(personTp, {"person" : row}));
+						$('#' + cnum).data("person", row);
+
+					})					
+					.fail(function(error){
+						alert( JSON.stringify(error) );
+					});		
+				},
+
 				uploadPerson:function(person){
 					var promise = MongoService.saveIbmPerson(person);
-					promise.then(function(){
+					promise.done(function(){
 						$('#' + person.cnum).addClass("uploaded");
 					})
-					.then(PersonController.logPerson(person));
+					.done(PersonController.logPerson(person));
 				},
 
 				logPerson:function(person){
