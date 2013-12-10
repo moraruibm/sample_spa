@@ -39,12 +39,14 @@ define(['jquery',
 					var promise = Ws4dService.getIbmPerson(cnum);
 
 					promise					
-					.done(function(response){
+					.then(function(response){
 						var row = response.response.resultset[0].row;
 						row.cnum = cnum;
 						$('#sidebar').append(_.template(personTp, {"person" : row}));
 						$('#' + cnum).data("person", row);
-
+						return cnum;
+					}).then(function(cnum){
+						console.log("am incarcat IBM_PERSON:" + cnum);
 					})					
 					.fail(function(error){
 						alert( JSON.stringify(error) );
